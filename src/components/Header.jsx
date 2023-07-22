@@ -22,15 +22,32 @@ const Header = () => {
                         <li className="nav-item">
                             <Link to="/" className="nav-link active" aria-current="page" >Accueil</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link" >Un autre lien</Link>
-                        </li>
+                        {
+                            auth.id ? (
+                                <>
+                                    <li className="nav-item">
+                                        <Link to="/" className="nav-link" >Mon agenda</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/user/follow-prospect" className="nav-link" >Mon suivi client</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/" className="nav-link" >Mes statistiques</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to="/admin/prospects/all" className="nav-link" >Admin</Link>
+                                    </li>
+                                </>
+                            ) : (
+                                ""
+                            )
+                        }
                     </ul>
                     <div className="d-flex">
                         {
                             auth.id ? (
                                 <>
-                                    <Link to='/' className="text-white ml-4" >{auth.firstName } {auth.lastName}</Link>
+                                    <Link to='/' className="btn btn-outline-success" >{auth.firstName } {auth.lastName}</Link>
                                     <Link to='/logout' 
                                         className="btn btn-outline-success" 
                                         onClick={() => {
@@ -40,6 +57,7 @@ const Header = () => {
                                     >
                                         Se Déconnecter
                                     </Link>
+
                                 </>
                             ) : (
                                 <>

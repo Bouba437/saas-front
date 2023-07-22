@@ -13,7 +13,7 @@ const Login = () => {
 
     useEffect(() => {
         if(auth.id) {
-            navigate("/")
+            navigate("/user/follow-prospect")
         }
     }, [auth.id, navigate]);
 

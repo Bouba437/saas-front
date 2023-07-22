@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { baseUrl } from './api';
 import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
+
 
 const initialState = {
     token: localStorage.getItem("token"),
@@ -106,6 +108,8 @@ const authSlice = createSlice({
             if(action.payload) {
 
                 const user = jwtDecode(action.payload);
+
+                toast.success("Un email vous a été envoyé pour valider votre addresse email..", {position: "top-right"});
 
                 return {
                     ...state,
